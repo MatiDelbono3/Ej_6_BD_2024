@@ -52,11 +52,7 @@ public class ComentariosServices {
         Session session=HibernateUtil.getSession();
         List<Integer>ComentariosDeUnPost=new ArrayList<>();
         try {
-            String Sql2=("SELECT p.id, p.titulo, COUNT(c.id) AS numero_de_comentarios\n" +
-                    "FROM posts p\n" +
-                    "LEFT JOIN comentarios c ON p.id = c.post_id\n" +
-                    "GROUP BY p.id, p.titulo\n" +
-                    "ORDER BY p.id;");
+            String Sql2=("SELECT c.post_id, COUNT(c.id) FROM comentarios c GROUP BY c.post_id\n");
             Query Consulta2=session.createQuery(Sql2);
             ComentariosDeUnPost=Consulta2.getResultList();
         }finally {

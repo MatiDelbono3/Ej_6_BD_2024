@@ -16,11 +16,7 @@ public class PostsServices {
         List<Posteos>PostsSinComentarios=new ArrayList<>();
         List<posteo>R1=new ArrayList<>();
         try {
-            String Sql3=("SELECT p.*\n" +
-                    "FROM posts p\n" +
-                    "LEFT JOIN comentarios c ON p.id = c.post_id\n" +
-                    "WHERE c.id IS NULL\n" +
-                    "ORDER BY p.fecha_publicacion DESC;");
+            String Sql3=("SELECT p.* FROM posteos p LEFT JOIN comentarios c ON p.id = c.post_id WHERE c.post_id IS NULL ORDER BY p.fecha_publicacion DESC\n");
             Query Consulta3=session.createQuery(Sql3);
             PostsSinComentarios=Consulta3.getResultList();
             session.getTransaction().commit();
